@@ -52,7 +52,8 @@ Each Jupyter notebook for this project aimed at investigating specific aspects o
 To find the most demanded skills for the top 3 most popular data roles. I filtered out those positions by which ones were the most popular, and got the top 5 skills for these top 3 roles. This query highlights the most popular job titles and their top skills, showing which skills I should pay attention to depending on the role I'm targeting.
 
 View my notebook with detailed steps here: [02_Skill_Demand.ipynb](03_Project\02_Skill_Demand.ipynb)
-## Visualize Data
+
+### Visualize Data
 ```
 fig, ax = plt.subplots(len(job_titles), 1)
 
@@ -63,10 +64,10 @@ for i, job_title in enumerate(job_titles):
 
 plt.show()
 ```
-## Results
+### Results
 ![skill_demand_per_job.png](03_Project\images\skill_demand_per_job.png)
 *Bar graph visualizing the salary for the top 3 data roles and their top 5 skills associated with each.*
-### Insights:
+## Insights:
 - SQL is the most requested skill for Data Analysts and Data Scientists, with it in over half the job postings for both roles. For Data Engineers, Python is the most sought-after skill, appearing in 68% of job postings.
 - Data Engineers require more specialized technical skills (AWS, Azure, Spark) compared to Data Analysts and Data Scientists who are expected to be proficient in more general data management and analysis tools (Excel, Tableau).
 - Python is a versatile skill, highly demanded across all three roles, but most prominently for Data Scientists (72%) and Data Engineers (65%).
@@ -75,7 +76,7 @@ plt.show()
 # 2. How are in-demand skills trending for Data Analysts?
 To find how skills are trending in 2023 for Data Analysts, I filtered data analyst positions and grouped the skills by the month of the job postings. This got me the top 5 skills of data analysts by month, showing how popular skills were throughout 2023.
 View my notebook with detailed steps here: [03_Skills_Trend.ipynb](03_Project\03_Skills_Trend.ipynb)
-## Visualize Data
+### Visualize Data
 ```
 from matplotlib.ticker import PercentFormatter
 
@@ -89,7 +90,7 @@ plt.show()
 ### Results
 ![Trending Top Skills for Data Analyst in US](03_Project\images\skill_trend.png)
 *Bar graph visualizing the trending top skills for data analysts in the US in 2023.*
-# Insights:
+## Insights:
 - SQL remains the most consistently demanded skill throughout the year, although it shows a gradual decrease in demand.
 - Excel experienced a significant increase in demand starting around September, surpassing both Python and Tableau by the end of the year.
 - Both Python and Tableau show relatively stable demand throughout the year with some fluctuations but remain essential skills for data analysts. Power BI, while less demanded compared to the others, shows a slight upward trend towards the year's end.
@@ -100,7 +101,7 @@ To identify the highest-paying roles and skills, I only got jobs in the United S
 
 View my notebook with detailed steps here: [04_Salary_Analysis.ipynb](03_Project\04_Salary_Analysis.ipynb)
 
-Visualize Data
+### Visualize Data
 ```
 sns.boxplot(data=df_US_top6, x='salary_year_avg', y='job_title_short', order=job_order)
 
@@ -113,7 +114,7 @@ plt.show()
 ![BoxPlot](03_Project\images\salary_analysis.png)
 *Box plot visualizing the salary distributions for the top 6 data job titles.*
 
-# Insights
+## Insights
 - There's a significant variation in salary ranges across different job titles. Senior Data Scientist positions tend to have the highest salary potential, with up to $600K, indicating the high value placed on advanced data skills and experience in the industry.
 
 - Senior Data Engineer and Senior Data Scientist roles show a considerable number of outliers on the higher end of the salary spectrum, suggesting that exceptional skills or circumstances can lead to high pay in these roles. In contrast, Data Analyst roles demonstrate more consistency in salary, with fewer outliers.
@@ -142,9 +143,85 @@ Here's the breakdown of the highest-paid & most in-demand skills for data analys
 ![Highest Paid Skills](03_Project\images\highest_paid_skill.png)
 *Two separate bar graphs visualizing the highest paid skills and most in-demand skills for data analysts in the US.*
 
-# Insights:
+## Insights:
 - The top graph shows specialized technical skills like dplyr, Bitbucket, and Gitlab are associated with higher salaries, some reaching up to $200K, suggesting that advanced technical proficiency can increase earning potential.
 
 - The bottom graph highlights that foundational skills like Excel, PowerPoint, and SQL are the most in-demand, even though they may not offer the highest salaries. This demonstrates the importance of these core skills for employability in data analysis roles.
 
 - There's a clear distinction between the skills that are highest paid and those that are most in-demand. Data analysts aiming to maximize their career potential should consider developing a diverse skill set that includes both high-paying specialized skills and widely demanded foundational skills.
+
+# 4. What are the most optimal skills to learn for Data Analysts?
+To identify the most optimal skills to learn ( the ones that are the highest paid and highest in demand) I calculated the percent of skill demand and the median salary of these skills. To easily identify which are the most optimal skills to learn.
+
+View my notebook with detailed steps here: [05_Optimal_Skills.ipynb](03_Project\05_Optimal_Skills.ipynb)
+
+### Visualize Data
+```
+from adjustText import adjust_text
+import matplotlib.pyplot as plt
+
+plt.scatter(df_DA_skills_high_demand['skill_percent'], df_DA_skills_high_demand['median_salary'])
+plt.show()
+```
+### Results
+![03_Project\images\most_optimal_skill_without_technology.png](03_Project\images\most_optimal_skill_without_technology.png)
+*A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the US.*
+## Insights:
+- The skill Oracle appears to have the highest median salary of nearly $97K, despite being less common in job postings. This suggests a high value placed on specialized database skills within the data analyst profession.
+
+- More commonly required skills like Excel and SQL have a large presence in job listings but lower median salaries compared to specialized skills like Python and Tableau, which not only have higher salaries but are also moderately prevalent in job listings.
+
+- Skills such as Python, Tableau, and SQL Server are towards the higher end of the salary spectrum while also being fairly common in job listings, indicating that proficiency in these tools can lead to good opportunities in data analytics.
+
+### Visualizing Different Techonologies
+Let's visualize the different technologies as well in the graph. We'll add color labels based on the technology (e.g., {Programming: Python})
+
+### Visualize Data
+```
+from matplotlib.ticker import PercentFormatter
+
+# Create a scatter plot
+scatter = sns.scatterplot(
+    data=df_DA_skills_tech_high_demand,
+    x='skill_percent',
+    y='median_salary',
+    hue='technology',  # Color by technology
+    palette='bright',  # Use a bright palette for distinct colors
+    legend='full'  # Ensure the legend is shown
+)
+plt.show()
+
+```
+### Result
+![03_Project\images\most_optimal_skills.png](03_Project\images\most_optimal_skills.png)
+*A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the US with color labels for technology.*
+## Insights:
+- The scatter plot shows that most of the programming skills (colored blue) tend to cluster at higher salary levels compared to other categories, indicating that programming expertise might offer greater salary benefits within the data analytics field.
+
+- The database skills (colored orange), such as Oracle and SQL Server, are associated with some of the highest salaries among data analyst tools. This indicates a significant demand and valuation for data management and manipulation expertise in the industry.
+
+- Analyst tools (colored green), including Tableau and Power BI, are prevalent in job postings and offer competitive salaries, showing that visualization and data analysis software are crucial for current data roles. This category not only has good salaries but is also versatile across different types of data tasks.
+
+# What I Learned
+Throughout this project, I deepened my understanding of the data analyst job market and enhanced my technical skills in Python, especially in data manipulation and visualization. Here are a few specific things I learned:
+
+Advanced Python Usage: Utilizing libraries such as Pandas for data manipulation, Seaborn and Matplotlib for data visualization, and other libraries helped me perform complex data analysis tasks more efficiently.
+Data Cleaning Importance: I learned that thorough data cleaning and preparation are crucial before any analysis can be conducted, ensuring the accuracy of insights derived from the data.
+Strategic Skill Analysis: The project emphasized the importance of aligning one's skills with market demand. Understanding the relationship between skill demand, salary, and job availability allows for more strategic career planning in the tech industry.
+
+# Insights
+This project provided several general insights into the data job market for analysts:
+
+- Skill Demand and Salary Correlation: There is a clear correlation between the demand for specific skills and the salaries these skills command. Advanced and specialized skills like Python and Oracle often lead to higher salaries.
+- Market Trends: There are changing trends in skill demand, highlighting the dynamic nature of the data job market. Keeping up with these trends is essential for career growth in data analytics.
+- Economic Value of Skills: Understanding which skills are both in-demand and well-compensated can guide data analysts in prioritizing learning to maximize their economic returns.
+
+# Challenges I Faced
+This project was not without its challenges, but it provided good learning opportunities:
+
+- Data Inconsistencies: Handling missing or inconsistent data entries requires careful consideration and thorough data-cleaning techniques to ensure the integrity of the analysis.
+- Complex Data Visualization: Designing effective visual representations of complex datasets was challenging but critical for conveying insights clearly and compellingly.
+- Balancing Breadth and Depth: Deciding how deeply to dive into each analysis while maintaining a broad overview of the data landscape required constant balancing to ensure comprehensive coverage without getting lost in details.
+
+# Conclusion
+This exploration into the data analyst job market has been incredibly informative, highlighting the critical skills and trends that shape this evolving field. The insights I got enhance my understanding and provide actionable guidance for anyone looking to advance their career in data analytics. As the market continues to change, ongoing analysis will be essential to stay ahead in data analytics. This project is a good foundation for future explorations and underscores the importance of continuous learning and adaptation in the data field.
