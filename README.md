@@ -51,7 +51,7 @@ Each Jupyter notebook for this project aimed at investigating specific aspects o
 # 1. What are the most demanded skills for the top 3 most popular data roles?
 To find the most demanded skills for the top 3 most popular data roles. I filtered out those positions by which ones were the most popular, and got the top 5 skills for these top 3 roles. This query highlights the most popular job titles and their top skills, showing which skills I should pay attention to depending on the role I'm targeting.
 
-View my notebook with detailed steps here: [02_Skill_Demand.ipynb](03_Project\02_Skill_Demand.ipynb)
+View my notebook with detailed steps here: [02_Skill_Demand.ipynb](03_Project/02_Skill_Demand.ipynb)
 
 ### Visualize Data
 ```
@@ -65,7 +65,7 @@ for i, job_title in enumerate(job_titles):
 plt.show()
 ```
 ### Results
-![skill_demand_per_job.png](03_Project\images\skill_demand_per_job.png)
+![skill_demand_per_job.png](03_Project/images/skill_demand_per_job.png)
 *Bar graph visualizing the salary for the top 3 data roles and their top 5 skills associated with each.*
 ## Insights:
 - SQL is the most requested skill for Data Analysts and Data Scientists, with it in over half the job postings for both roles. For Data Engineers, Python is the most sought-after skill, appearing in 68% of job postings.
@@ -75,7 +75,7 @@ plt.show()
 
 # 2. How are in-demand skills trending for Data Analysts?
 To find how skills are trending in 2023 for Data Analysts, I filtered data analyst positions and grouped the skills by the month of the job postings. This got me the top 5 skills of data analysts by month, showing how popular skills were throughout 2023.
-View my notebook with detailed steps here: [03_Skills_Trend.ipynb](03_Project\03_Skills_Trend.ipynb)
+View my notebook with detailed steps here: [03_Skills_Trend.ipynb](03_Project/03_Skills_Trend.ipynb)
 ### Visualize Data
 ```
 from matplotlib.ticker import PercentFormatter
@@ -88,7 +88,7 @@ plt.gca().yaxis.set_major_formatter(PercentFormatter(decimals=0))
 plt.show()
 ```
 ### Results
-![Trending Top Skills for Data Analyst in US](03_Project\images\skill_trend.png)
+![Trending Top Skills for Data Analyst in US](03_Project/images/skill_trend.png)
 *Bar graph visualizing the trending top skills for data analysts in the US in 2023.*
 ## Insights:
 - SQL remains the most consistently demanded skill throughout the year, although it shows a gradual decrease in demand.
@@ -99,7 +99,7 @@ plt.show()
 # 3. How well do jobs and skills pay for Data Analysts?
 To identify the highest-paying roles and skills, I only got jobs in the United States and looked at their median salary. But first I looked at the salary distributions of common data jobs like Data Scientist, Data Engineer, and Data Analyst, to get an idea of which jobs are paid the most.
 
-View my notebook with detailed steps here: [04_Salary_Analysis.ipynb](03_Project\04_Salary_Analysis.ipynb)
+View my notebook with detailed steps here: [04_Salary_Analysis.ipynb](03_Project/04_Salary_Analysis.ipynb)
 
 ### Visualize Data
 ```
@@ -111,7 +111,7 @@ plt.show()
 ```
 
 ### Result :
-![BoxPlot](03_Project\images\salary_analysis.png)
+![BoxPlot](03_Project/images/salary_analysis.png)
 *Box plot visualizing the salary distributions for the top 6 data job titles.*
 
 ## Insights
@@ -132,7 +132,7 @@ fig, ax = plt.subplots(2, 1)
 # Top 10 Highest Paid Skills for Data Analysts
 sns.barplot(data=df_DA_top_pay, x='median', y=df_DA_top_pay.index, hue='median', ax=ax[0], palette='dark:b_r')
 
-# Top 10 Most In-Demand Skills for Data Analystsr')
+# Top 10 Most In-Demand Skills for Data Analystsr'
 sns.barplot(data=df_DA_skills, x='median', y=df_DA_skills.index, hue='median', ax=ax[1], palette='light:b')
 
 plt.show()
@@ -140,7 +140,7 @@ plt.show()
 
 ### Results
 Here's the breakdown of the highest-paid & most in-demand skills for data analysts in the US:
-![Highest Paid Skills](03_Project\images\highest_paid_skill.png)
+![Highest Paid Skills](03_Project/images/highest_paid_skill.png)
 *Two separate bar graphs visualizing the highest paid skills and most in-demand skills for data analysts in the US.*
 
 ## Insights:
@@ -153,7 +153,7 @@ Here's the breakdown of the highest-paid & most in-demand skills for data analys
 # 4. What are the most optimal skills to learn for Data Analysts?
 To identify the most optimal skills to learn ( the ones that are the highest paid and highest in demand) I calculated the percent of skill demand and the median salary of these skills. To easily identify which are the most optimal skills to learn.
 
-View my notebook with detailed steps here: [05_Optimal_Skills.ipynb](03_Project\05_Optimal_Skills.ipynb)
+View my notebook with detailed steps here: [05_Optimal_Skills.ipynb](03_Project/05_Optimal_Skills.ipynb)
 
 ### Visualize Data
 ```
@@ -164,7 +164,7 @@ plt.scatter(df_DA_skills_high_demand['skill_percent'], df_DA_skills_high_demand[
 plt.show()
 ```
 ### Results
-![03_Project\images\most_optimal_skill_without_technology.png](03_Project\images\most_optimal_skill_without_technology.png)
+![03_Project/images/most_optimal_skill_without_technology.png](03_Project/images/most_optimal_skill_without_technology.png)
 *A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the US.*
 ## Insights:
 - The skill Oracle appears to have the highest median salary of nearly $97K, despite being less common in job postings. This suggests a high value placed on specialized database skills within the data analyst profession.
@@ -193,7 +193,7 @@ plt.show()
 
 ```
 ### Result
-![03_Project\images\most_optimal_skills.png](03_Project\images\most_optimal_skills.png)
+![03_Project/images/most_optimal_skills.png](03_Project/images/most_optimal_skills.png)
 *A scatter plot visualizing the most optimal skills (high paying & high demand) for data analysts in the US with color labels for technology.*
 ## Insights:
 - The scatter plot shows that most of the programming skills (colored blue) tend to cluster at higher salary levels compared to other categories, indicating that programming expertise might offer greater salary benefits within the data analytics field.
